@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/khaled44000/mspr_espi44/issues"
   },
-  "homepage": "https://github.com/khaled44000/mspr_espi44#readme"
+  "homepage": "https://github.com/khaled44000/mspr_espi44#readme",
+  "dependencies": {
+    "aframe-ar": "^0.2.1-a"
+  }
 }
