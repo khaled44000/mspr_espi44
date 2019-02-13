@@ -1,0 +1,19 @@
+{
+  "name": "mspr_espi44",
+  "version": "1.0.0",
+  "description": "ARjs la Réalité Augmentée",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khaled44000/mspr_espi44.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khaled44000/mspr_espi44/issues"
+  },
+  "homepage": "https://github.com/khaled44000/mspr_espi44#readme"
+}
