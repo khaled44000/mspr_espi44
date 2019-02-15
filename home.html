@@ -1,23 +1,20 @@
-<!doctype HTML>
-<head>
-  <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
-  <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"> </script>
-</head>
 <html>
+  <head>
+   <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/examples/vendor/aframe/build/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
+<meta http-equiv="Content-Language" content="fr" /> 
+<meta charset="UTF-8">
+
+  </head>
   <body style='margin : 0px; overflow: hidden;'>
-    <a-scene stats embedded arjs='trackingMethod: best;'>
-      <a-marker preset="hiro">
-      <a-box position='0 1 0' material='color: blue;'>
-      </a-box>
-      </a-marker>
-      <a-entity camera></a-entity>
-      <a-entity id="entity">
-        <a-animation
-            begin="colorChange"
-            attribute="color"
-            to="red">
-        </a-animation>
-    </a-scene>
+    <a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false;'>
+      <a-assets timeout="5000">
+        <a-asset-item id="model" src="C:/Users/Win/Downloads/snake2.gltf">
+        </a-asset-item> 
+    </a-assets>
+    <a-gltf-model src="#model"></a-gltf-model>
+    <a-marker-camera preset='hiro'></a-marker-camera>
+      <a-camera-static/>
+      </a-scene>
   </body>
 </html>
