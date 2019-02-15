@@ -7,14 +7,13 @@
 
   </head>
   <body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false;'>
-      <a-assets timeout="5000">
-        <a-asset-item id="model" src="C:/Users/Win/Downloads/snake2.gltf">
-        </a-asset-item> 
-    </a-assets>
-    <a-gltf-model src="#model"></a-gltf-model>
-    <a-marker-camera preset='hiro'></a-marker-camera>
-      <a-camera-static/>
-      </a-scene>
+      <a-scene embedded arjs='trackingMethod: best;'>
+          <a-anchor hit-testing-enabled='true'>
+          
+          <a-entity gltf-model="url(https://andrescuervo.github.io/assets/ghostie/ghostie.gltf)" ></a-entity>
+               <a-box position='0 0.5 0' material='opacity: 0.5;'></a-box>
+          </a-anchor>
+            <a-camera-static/>
+        </a-scene>
   </body>
 </html>
