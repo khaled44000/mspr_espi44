@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 
   </head>
- 
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false;'>
       <a-assets>
@@ -15,8 +14,7 @@
         </a-asset-item> 
     </a-assets>
     <a-gltf-model src="#model"></a-gltf-model>
-    <a-marker preset='custom' type='pattern'
-    patternUrl='https://khaled44000.github.io/mspr_espi44/markers/marker-snake-pattern.patt'></a-marker>
+    <a-marker-camera preset='hiro'></a-marker-camera>
       <a-camera-static/>
       </a-scene>
   </body>
