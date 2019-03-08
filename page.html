@@ -21,11 +21,22 @@
 	</a-scene>
 	
 	<script>
+		const model = document.querySelector('a-gltf-model')
+		
+		const texture = new THREE.TextureLoader().load('diffuse.png');
+		texture.flipY = false; // for glTF models.
+
+		model.addEventListener('model-loaded', (e) => {
+		  e.detail.model.traverse( (node) => {
+			if (node.isMesh) node.material.map = tex;
+		  })
+		})
+
 		const marker = document.querySelector('a-marker')
 		
 		marker.addEventListener('markerFound', () => alert('marker found'))
 
-		marker.addEventListener('markerLeave', () => alert('marker leave'))
+		marker.addEventListener('markerLost', () => alert('marker lost'))
 	</script>
 </body>
 </html>
