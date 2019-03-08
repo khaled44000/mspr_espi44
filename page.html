@@ -19,6 +19,13 @@
 		</a-marker>
 		<a-camera-static />
 	</a-scene>
-</body>
+	
+	<script>
+		const marker = document.querySelector('a-gltf-model')[0]
+		
+		marker.addEventListener('markerFound', () => alert('marker found'))
 
+		marker.addEventListener('markerLeave', () => alert('marker leave'))
+	</script>
+</body>
 </html>
