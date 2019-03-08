@@ -28,7 +28,7 @@
 
 		model.addEventListener('model-loaded', (e) => {
 		  e.detail.model.traverse( (node) => {
-			if (node.isMesh) node.material.map = tex;
+			if (node.isMesh) node.material.map = texture;
 		  })
 		})
 
