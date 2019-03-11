@@ -9,44 +9,76 @@
         <br/>
         Contact me any time at <a href='https://twitter.com/jerome_etienne' target='_blank'>@Maehdi49</a>
 	</div>
-		<a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false; 'id="gltfModel">
+	<div id="markerVisible" style="position: fixed; top: 10px; left: 10px;">
+		VISIBLE
+	</div>
+	<a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false; 'id="gltfModel">
 		<a-entity light="type: ambient; intensity: 4;"></a-entity>
 		<a-marker id="marker-1" type='pattern' url='markers/1.patt'></a-marker>
 		<a-marker id="marker-2" type='pattern' url='markers/2.patt'></a-marker>
-		<a-marker id="marker-3" type='pattern' url='markers/3.patt'></a-marker>
-		<a-marker id="marker-4" type='pattern' url='markers/4.patt'></a-marker>
+		<a-gltf-model src="models/rino2.gltf" scale="0.5 0.5 0.5" position="0 0.75 0"  rotation="0 180 0" ></a-gltf-model>
 		<a-camera-static />
 	</a-scene>
-	
+		
 	<script>
-		let modelName = "models/simplesnake.gltf"
+		const modelName = "models/rino2.gltf"
+		const modelTexture = "textures/rino2.png"
 		
 		const scene = document.querySelector('a-scene')
-		
-		let markersValues = [false, false, false, false]
-		
+		const model = document.querySelector('a-gltf-model')
+		const markerVisible = document.getElementById("markerVisible")
 		const markersNodes = document.querySelectorAll('a-marker')
 		
+		let markersValues = [false, false]
+		
+		const texture = new THREE.TextureLoader().load(modelTexture)
+		texture.flipY = false; // for glTF models.
+
+		model.addEventListener('model-loaded', e => {
+		  e.detail.model.traverse( (node) => {
+			if (node.isMesh) node.material.map = texture
+		  })
+		})
+		
+		scene.add(model)
+
+		setInterval(() => console.log(model.position, model.object3D.position), 1000)
+
 		function AreAllMarkersDetected(){
-			return markersValues.every(m => m)
+			const is = markersValues.every(m => m)
+			if(is){
+				let x = 0
+				let y = 0
+				let z = 0
+
+				markersNodes.forEach((m,i) => {
+					console.log(i, m.object3D.position)
+					x += m.object3D.position.x
+					y += m.object3D.position.y
+					z += m.object3D.position.z
+				})
+				
+				console.log({x: x / markersNodes.length, y: y / markersNodes.length, z: z / markersNodes.length})
+				
+				model.position = markersNodes[0].object3D.position
+				model.object3D.position = markersNodes[0].object3D.position
+				//model.position = {x: x / markersNodes.length, y: y / markersNodes.length, z: z / markersNodes.length}
+				//model.object3D.position = {x: x / markersNodes.length, y: y / markersNodes.length, z: z / markersNodes.length}
+			}
+			return is
 		}
 		
 		function updateMarkerStatus(node, status){
 			const [, id] = (node.id || "").match(/^.*(\d+)$/) || [, -1]
 			console.log(id, status)
+			
 			if(id !== -1 && id <= markersValues.length){
 				markersValues[id - 1] = status
 			}
-			console.log(areAllMarkersDetected())
+			
+			markerVisible.style.display = AreAllMarkersDetected() ? "block" : "none"
 		}
-		
-		function loadModel(){
-			const loader = new THREE.GLTFLoader();
-			loader.load(modelName, model => {
-				scene.add(model)
-			})
-		}
-		
+				
 		markersNodes.forEach(marker => {
 			marker.addEventListener('markerFound', (e) => updateMarkerStatus(e.target, true))
 			marker.addEventListener('markerLost', (e) => updateMarkerStatus(e.target, false))
