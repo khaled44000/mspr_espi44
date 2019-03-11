@@ -3,9 +3,9 @@
         {
             "bufferView" : 0,
             "componentType" : 5123,
-            "count" : 420,
+            "count" : 429,
             "max" : [
-                239
+                248
             ],
             "min" : [
                 0
@@ -15,7 +15,7 @@
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 240,
+            "count" : 249,
             "max" : [
                 0.8536190986633301,
                 3.8165199756622314,
@@ -31,7 +31,7 @@
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 240,
+            "count" : 249,
             "max" : [
                 0.9999396800994873,
                 1.0,
@@ -47,14 +47,14 @@
         {
             "bufferView" : 3,
             "componentType" : 5126,
-            "count" : 240,
+            "count" : 249,
             "max" : [
-                1.0,
-                1.0
+                0.9997866749763489,
+                1.0088280141353607
             ],
             "min" : [
-                0.0,
-                0.0
+                -0.0009212195873260498,
+                0.0005753636360168457
             ],
             "type" : "VEC2"
         }
@@ -66,32 +66,32 @@
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 840,
+            "byteLength" : 858,
             "byteOffset" : 0,
             "target" : 34963
         },
         {
             "buffer" : 0,
-            "byteLength" : 2880,
-            "byteOffset" : 840,
+            "byteLength" : 2988,
+            "byteOffset" : 860,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 2880,
-            "byteOffset" : 3720,
+            "byteLength" : 2988,
+            "byteOffset" : 3848,
             "target" : 34962
         },
         {
             "buffer" : 0,
-            "byteLength" : 1920,
-            "byteOffset" : 6600,
+            "byteLength" : 1992,
+            "byteOffset" : 6836,
             "target" : 34962
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 8520,
+            "byteLength" : 8828,
             "uri" : "rino2.bin"
         }
     ],
