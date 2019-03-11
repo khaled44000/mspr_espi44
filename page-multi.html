@@ -11,24 +11,46 @@
 	</div>
 		<a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false; 'id="gltfModel">
 		<a-entity light="type: ambient; intensity: 4;"></a-entity>
-		<a-marker type='pattern' url='markers/1.patt'></a-marker>
-		<a-marker type='pattern' url='markers/2.patt'></a-marker>
-		<a-marker type='pattern' url='markers/3.patt'></a-marker>
-		<a-marker type='pattern' url='markers/4.patt'></a-marker>
+		<a-marker id="marker-1" type='pattern' url='markers/1.patt'></a-marker>
+		<a-marker id="marker-2" type='pattern' url='markers/2.patt'></a-marker>
+		<a-marker id="marker-3" type='pattern' url='markers/3.patt'></a-marker>
+		<a-marker id="marker-4" type='pattern' url='markers/4.patt'></a-marker>
 		<a-camera-static />
 	</a-scene>
 	
 	<script>
-		let markers = [false, false, false, false]
+		let modelName = "models/simplesnake.gltf"
 		
-		const markersNodes = document.querySelector('a-marker')
+		const scene = document.querySelector('a-scene')
 		
-		function updateStatus(){
-			
+		let markersValues = [false, false, false, false]
+		
+		const markersNodes = document.querySelectorAll('a-marker')
+		
+		function AreAllMarkersDetected(){
+			return markersValues.every(m => m)
 		}
-		/*marker.addEventListener('markerFound', () => alert('marker found'))
-
-		marker.addEventListener('markerLost', () => alert('marker lost'))*/
+		
+		function updateMarkerStatus(node, status){
+			const [, id] = (node.id || "").match(/^.*(\d+)$/) || [, -1]
+			console.log(id, status)
+			if(id !== -1 && id <= markersValues.length){
+				markersValues[id - 1] = status
+			}
+			console.log(areAllMarkersDetected())
+		}
+		
+		function loadModel(){
+			const loader = new THREE.GLTFLoader();
+			loader.load(modelName, model => {
+				scene.add(model)
+			})
+		}
+		
+		markersNodes.forEach(marker => {
+			marker.addEventListener('markerFound', (e) => updateMarkerStatus(e.target, true))
+			marker.addEventListener('markerLost', (e) => updateMarkerStatus(e.target, false))
+		})
 	</script>
 </body>
 </html>
