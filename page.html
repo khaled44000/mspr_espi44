@@ -31,17 +31,17 @@
 			if (node.isMesh) node.material.map = texture;
 		  })
 		})
-/*
-		model = document.getElementById("snake")
 		
-		texture = new THREE.TextureLoader().load('textures/simplesnake.png');
-		texture.flipY = false; // for glTF models.
+		const model2 = document.getElementById("snake")
+		
+		const texture2 = new THREE.TextureLoader().load('textures/simplesnake.png');
+		texture2.flipY = false; // for glTF models.
 
-		model.addEventListener('model-loaded', (e) => {
+		model2.addEventListener('model-loaded', (e) => {
 		  e.detail.model.traverse( (node) => {
-			if (node.isMesh) node.material.map = texture;
+			if (node.isMesh) node.material.map = texture2;
 		  })
-		})*/
+		})
 
 		const marker = document.querySelector('a-marker')
 		
